@@ -1,9 +1,16 @@
 
 # 演習課題：Astro コンポーネントとデータ取り込み
 
+### 最初に`npm install`を実行してください。
+
+Astro起動コマンド
+```shell
+pnpm run dev
+```
+
 ## 課題1：レイアウトテンプレートの作成
 
-- `src/layouts/BaseLayout.astro` を作成し、以下の構成を含めてください。
+- `03_astro_component/src/layouts/BaseLayout.astro` を作成し、以下の構成を含めてください。
   - `<header>`：固定のナビゲーションバー
   - `<main><slot /></main>`：ページ内容を挿入
   - `<footer>`：固定フッター
@@ -12,7 +19,7 @@
 
 ## 課題2：次回公演情報セクションのコンポーネント化
 
-- `src/components/UpcomingShow.astro` を作成し、propsで以下のデータを受け取るようにしてください。
+- `03_astro_component/src/components/UpcomingShow.astro` を作成し、propsで以下のデータを受け取るようにしてください。
   - `title`, `date`, `venue`, `summary`
 
 ### 表示例（Tailwind推奨）：
@@ -27,5 +34,5 @@
 
 ## 課題3：劇団員データのMarkdown化とページ生成
 
-- `src/content/members/` 以下に3人分の `.md` ファイルを作成
-- `src/pages/members/[slug].astro` にて `getStaticPaths()` を使い、詳細ページを生成
+- `03_astro_component/src/content/members/` 以下に3人分の `.md` ファイルを作成
+- `03_astro_component/src/pages/members/[slug].astro` にて `getStaticPaths()` を使い、詳細ページを生成
