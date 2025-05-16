@@ -1,16 +1,20 @@
 ---
-import './src/styles/global.css'
+import BaseLayout from '../layouts/BaseLayout.astro';
+import UpcomingShow from '../components/UpcomingShow.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout>
+	<section class="mb-12 border-b border-gray-300 pb-8 mt-20">
+		<h2 class="text-2xl font-bold mb-4">ようこそ、新日本演劇のページへ！</h2>
+		<p class="text-base text-gray-700">ここはトップページの本文です。</p>
+	</section>
+	
+	<section class="mb-12 border-b border-gray-300 pb-8">
+		<UpcomingShow
+			title="XXX"
+			date="2025年12月12日"
+			venue="高崎市文化会館"
+			summary="これはサンプルの公演概要です！"
+		/>
+	</section>	
+</BaseLayout>

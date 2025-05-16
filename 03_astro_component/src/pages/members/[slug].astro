@@ -1,0 +1,56 @@
+---
+import { getEntry, getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const members = await getCollection('members');
+  return members.map((member) => ({
+    params: { slug: member.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const entry = await getEntry('members', slug);
+
+if (!entry) {
+  throw new Error(`メンバー「${slug}」が見つかりませんでした`);
+}
+
+const { data, body } = entry;
+---
+
+<BaseLayout>
+  <article class="prose max-w-2xl mx-auto mt-24">
+    <div class="flex flex-col md:flex-row items-start gap-4">
+      <img 
+        src={`/${data.image}`} 
+        alt={`${data.name}の写真`} 
+        class="w-60 h-80 object-cover mb-6"
+      />
+      <div class="flex-1 self-start">
+        <p class="mb-6 mt-1">
+          <span class="bg-black text-white text-base px-4 py-2 rounded-full">{data.role}</span>
+        </p> 
+        <div class="mb-6">
+          <h1 class="text-4xl font-bold mb-2">{data.name}</h1>
+          <div class="w-full h-0.5 bg-[#d70004]"></div>
+        </div>
+        <!-- SNSリンクここに追加！ -->
+        <div class="flex gap-4 mb-6">
+          {data.twitter && (
+            <a href={data.twitter} class="text-[#1DA1F2] hover:underline" target="_blank" rel="noopener noreferrer">
+              X
+            </a>
+          )}
+          {data.instagram && (
+            <a href={data.instagram} class="text-pink-500 hover:underline" target="_blank" rel="noopener noreferrer">
+              Instagram
+            </a>
+          )}
+        </div>
+        <p class="mb-6">{data.summary}</p>
+        <div class="prose" set:html={body}></div>  <!-- ← ここを変更！ -->
+      </div>
+  </div>
+  </article>
+</BaseLayout>

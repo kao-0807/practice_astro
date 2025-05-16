@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const members = (await getCollection('members')).sort((a, b) => {
+  return (a.data.order ?? 999) - (b.data.order ?? 999);
+});
+
+---
+
+<BaseLayout>
+  <main class="w-full px-2 py-12">
+    <section class="pb-8 mt-12">
+      <h1 class="text-2xl font-bold">劇団員一覧</h1>
+    </section>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-screen-lg mx-auto px-4">
+      {members.map((member) => (
+        <a href={`/members/${member.slug}`} class="flex items-start border border-gray-300 rounded-lg p-4 shadow hover:shadow-md hover:border-[#d70004] transition">
+          <img src={`/${member.data.image}`} alt={`${member.data.name}の写真`} class="w-24 h-24 rounded-full mr-4 object-cover" />
+
+          <div>
+            <p class="mb-2">
+              <span class="bg-black text-white text-xs px-2 py-1 rounded-full">{member.data.role}</span>
+            </p>
+            <h2 class="text-xl font-semibold text-black mb-2">{member.data.name}</h2>
+            <p class="text-sm text-gray-700">{member.data.summary}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </main>
+</BaseLayout>

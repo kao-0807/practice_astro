@@ -1,0 +1,35 @@
+---
+import '../styles/global.css';
+---
+
+<head>
+  <meta charset="UTF-8" />
+  <title>新日本演劇</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body class="text-gray-900 bg-white font-sans text-base">
+  <header class="bg-white fixed top-0 left-0 w-full z-50 shadow border-b-3 border-[#d70004]">
+    <div class="flex items-center justify-between px-6 py-2">
+      <img src="/shinnihon_logo_Lred.png" alt="新日本演劇ロゴ" class="h-10 mr-4" />
+      <nav>
+        <ul class="flex space-x-6">
+          <li><a href="/" class="hover:border-b-2 hover:border-[#d70004] pb-1">ホーム</a></li>
+          <li><a href="/members" class="hover:border-b-2 hover:border-[#d70004] pb-1">劇団員</a></li>
+          <li><a href="/contact" class="hover:border-b-2 hover:border-[#d70004] pb-1">お問い合わせ</a></li>
+        </ul>
+      </nav>
+      
+    </div>
+  </header>
+  
+
+  <main class="max-w-screen-lg mx-auto px-6">
+
+    <slot />
+  </main>
+
+  <footer class="bg-white fixed bottom-0 left-0 w-full z-50 h-20 border-t-3 border-[#D70004] flex items-center justify-center px-6">
+    © 2025 新日本演劇
+  </footer>
+</body>
